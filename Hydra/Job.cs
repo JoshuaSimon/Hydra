@@ -9,8 +9,13 @@ namespace Hydra
         public string name;
         public bool isLocked;
         public int clientId;
+        public List<object> parameters;
 
-        public Job(int id, int metaId, float cost, string name, bool isLocked, int clientId)
+        public JobStatus Status { get; set; }
+
+        public Job(
+            int id, int metaId, float cost, string name,
+            bool isLocked, int clientId, List<object> parameters)
         {
             this.id = id;
             this.metaId = metaId;
@@ -18,6 +23,17 @@ namespace Hydra
             this.name = name;
             this.isLocked = isLocked;
             this.clientId = clientId;
+            this.parameters = parameters;
+        }
+
+        public enum JobStatus
+        {
+            Open,
+            Waiting,
+            InProgress,
+            Sucsess,
+            Failed,
+            Canceled
         }
     }
 }
